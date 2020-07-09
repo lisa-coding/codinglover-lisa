@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React learning </title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+    let appContainer=document.getElementById("app");
+        class Toggle extends React.Component{
+            constructor(props){
+                super(props)
+                this.state={
+                    isToggleOn:true
+                }
+                //1:this.handleClick=this.handleClick.bind(this)
+            }
+            /*注意只有在constructor构造函数里，设定state的初始值时可以用this.state，
+            其他时候设定state值，都要用this.setState()函数。*/
+            //2:箭头函数可直接将handclick与this绑定。
+            handleClick=()=>{
+                this.setState(prevState=>({
+                    isToggleOn:!prevState.isToggleOn
+                }) )
+            }
+            render(){
+                return(
+                    //3:将handleClick与this绑定，也可在最后使用{this.handleClick.bind(this)}
+                    <button onClick={this.handleClick}>
+                      {this.state.isToggleOn?"ON":"OFF"}
+                    </button>
+                )
+            }
+
+        }
+
+          ReactDOM.render(
+              <Toggle/>,
+             appContainer
+         )
+    </script>
+</body>   
+</html>

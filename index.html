@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React learning </title>
+</head>
+<body>
+    <button onclick="doClick()">click me</button>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+    function doClick(){
+        alert("please click")
+         
+    }
+         let appContainer=document.getElementById("app");
+         
+         class Button extends React.Component{
+             doClick(){
+                 alert("do click")
+             }
+             render(){
+                 /*onClick={}，花括号表示的是给onClick绑定一个方法。
+                 设定了一个doClick函数，将它放入onclick里面时，注意加上this。*/
+                 return(
+                     <button onClick={this.doClick}>
+                     try  it
+                    </button>
+                 )
+             }
+
+         }
+         
+
+         class Link extends React.Component{
+             doClick(e){
+                 e.preventDefault()
+                 alert("click my link")
+             }
+             render(){
+                 /*onClick={}，花括号表示的是给onClick绑定一个方法。
+                 设定了一个doClick函数，将它放入onclick里面时，注意加上this。*/
+                 return(
+                     <a href="https://zh-hans.reactjs.org/docs/state-and-lifecycle.html" onClick={this.doClick}>
+                          my link--React
+                    </a>
+                 )
+             }
+
+         }
+          ReactDOM.render(
+              <div>
+                <Button/>
+                <Link/>
+               </div>,
+             appContainer
+         )
+    </script>
+</body>   
+</html>
